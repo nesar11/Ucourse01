@@ -4,17 +4,39 @@
 <!-- <textarea rows="6" [value] ="newPost"></textarea> -->
 <!-- under line object squre bracket - underline value property binding -->
 <mat-card>
-  <form>
+
+  <form (submit) ="onAddPost(postForm)" #postForm="ngForm">
+
+      <mat-form-field>
+          <input
+           matInput
+            type="text"
+            name="title"
+             ngModel
+             required
+
+             minlenght="5"
+             #title="ngModel">
+             <mat-error *ngIf="title.invalid"> Please Enter the Title</mat-error>
+
+        </mat-form-field>
+           <mat-form-field>
+
+               <textarea
+                matInput
+                rows="4"
+                name="content"
+                 ngModel
+                 required
+                 minlength="1"
+                 #content="ngModel"></textarea>
+                 <mat-error *ngIf="content.invalid"> Please Enter the Content</mat-error>
+             </mat-form-field>
+             <button mat-raised-button
+             color="accent"
+               type="submit">Save Post</button>
 
   </form>
- <mat-form-field>
-   <input matInput type="text" [(ngModel)] ="enteredTitle">
- </mat-form-field>
-    <mat-form-field>
-
-        <textarea matInput rows="6" [(ngModel)]="enteredContent" #postInput></textarea>
-      </mat-form-field>
-      <button mat-raised-button color="accent"  (click) ="onAddPost(postInput)">Save Post</button>
 
 </mat-card>
 
